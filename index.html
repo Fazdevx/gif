@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethereal Folio | Amor Eterno</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <audio id="bg-music" loop>
+    <source src="/src/assets/musica.mp3" type="audio/mpeg">
+  </audio>
+  <div id="app">
+    <div class="background-blur"></div>
+    <main class="book-container">
+      <div class="book" id="book">
+        <!-- Portada Romántica -->
+        <div class="page cover" id="page-0">
+          <div class="page-content">
+            <h2>Te Amo</h2>
+            <h3>Para Toda La Vida</h3>
+            <p>Este libro es solo un pequeño reflejo de todo lo que siento por ti</p>
+            <div class="glass-btn">Abrir mi corazón</div>
+          </div>
+        </div>
+
+        <!-- Página 1 -->
+        <div class="page" id="page-1">
+          <div class="page-side front">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top">
+                <div class="img-wrap small"><img src="/src/photos/1.jpeg" alt="1"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Nuestros días.</p>
+                  <span class="short-quote">"Contigo he aprendido que la felicidad no es un destino, sino cada momento
+                    que paso a tu lado riendo de cualquier tontería."</span>
+                </div>
+              </div>
+              <div class="img-text-pair bottom">
+                <div class="pair-text">
+                  <p class="poetic-brief">Tú y yo.</p>
+                  <span class="short-quote">"Mi lugar favorito en el mundo entero siempre será a tu lado, sin importar
+                    dónde estemos, siempre que estemos juntos."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/2.jpeg" alt="2"></div>
+              </div>
+              <div class="page-footer">01</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top right-align">
+                <div class="pair-text">
+                  <p class="poetic-brief">Nuestro destino.</p>
+                  <span class="short-quote">"Eres exactamente lo que siempre soñé y mucho más; gracias por aparecer en
+                    mi vida para llenarla de una luz única."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/3.jpeg" alt="3"></div>
+              </div>
+              <div class="img-text-pair bottom left-align">
+                <div class="img-wrap small"><img src="/src/photos/4.jpeg" alt="4"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Mi felicidad.</p>
+                  <span class="short-quote">"Toda una vida no me bastaría para agradecerte por todo el amor y la alegría
+                    que traes a mis días desde que te conocí."</span>
+                </div>
+              </div>
+              <div class="page-footer">02</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="page" id="page-2">
+          <div class="page-side front">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top">
+                <div class="img-wrap small"><img src="/src/photos/5.jpeg" alt="5"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Pura pasión.</p>
+                  <span class="short-quote">"Me encantas cada día más, y no dejo de maravillarme por la forma en que
+                    conectamos y entendemos el mundo juntos."</span>
+                </div>
+              </div>
+              <div class="img-text-pair bottom">
+                <div class="pair-text">
+                  <p class="poetic-brief">Tu mirada.</p>
+                  <span class="short-quote">"Tus ojos son mi mundo entero, el único lugar donde me pierdo con gusto y
+                    donde siempre quiero volver a encontrarme."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/6.jpeg" alt="6"></div>
+              </div>
+              <div class="page-footer">03</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top right-align">
+                <div class="pair-text">
+                  <p class="poetic-brief">Mi refugio.</p>
+                  <span class="short-quote">"En tus brazos es el único lugar donde me siento completamente a salvo,
+                    donde el ruido del mundo desaparece al fin."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/7.jpeg" alt="7"></div>
+              </div>
+              <div class="img-text-pair bottom left-align">
+                <div class="img-wrap small"><img src="/src/photos/8.jpeg" alt="8"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Eternidad.</p>
+                  <span class="short-quote">"Eres mi principio y mi fin, la persona con la que quiero compartir cada
+                    pequeño detalle de mi existencia por siempre."</span>
+                </div>
+              </div>
+              <div class="page-footer">04</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="page" id="page-3">
+          <div class="page-side front">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top">
+                <div class="img-wrap small"><img src="/src/photos/9.jpeg" alt="9"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Mi promesa.</p>
+                  <span class="short-quote">"Nunca te voy a soltar, porque caminar a tu lado es lo mejor que me ha
+                    pasado en la vida y quiero que sea así eternamente."</span>
+                </div>
+              </div>
+              <div class="img-text-pair bottom">
+                <div class="pair-text">
+                  <p class="poetic-brief">Cada instante.</p>
+                  <span class="short-quote">"Amo cada segundo que paso contigo; incluso los momentos más simples se
+                    vuelven mágicos cuando estamos juntos."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/10.jpeg" alt="10"></div>
+              </div>
+              <div class="page-footer">05</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top right-align">
+                <div class="pair-text">
+                  <p class="poetic-brief">Mucha magia.</p>
+                  <span class="short-quote">"Tú haces que todo sea especial, tienes ese don de transformar un día normal
+                    en algo inolvidable solo con tu sonrisa."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/11.jpeg" alt="11"></div>
+              </div>
+              <div class="img-text-pair bottom left-align">
+                <div class="img-wrap small"><img src="/src/photos/12.jpeg" alt="12"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Todo mi deseo.</p>
+                  <span class="short-quote">"Te quiero para siempre, con todas tus virtudes y tus rarezas, porque eres
+                    la persona perfecta para mí en todos los sentidos."</span>
+                </div>
+              </div>
+              <div class="page-footer">06</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página 4 -->
+        <div class="page" id="page-4">
+          <div class="page-side front">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top">
+                <div class="img-wrap small"><img src="/src/photos/13.jpeg" alt="13"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Sinceridad pura.</p>
+                  <span class="short-quote">"Eres mi verdad absoluta, la persona con la que puedo ser yo mismo sin miedo
+                    a nada y que me acepta tal como soy."</span>
+                </div>
+              </div>
+              <div class="img-text-pair bottom">
+                <div class="pair-text">
+                  <p class="poetic-brief">Mi latido.</p>
+                  <span class="short-quote">"Mi corazón late solo por ti, y cada vez que te veo siento esa misma emoción
+                    de la primera vez que cruzamos miradas."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/14.jpeg" alt="14"></div>
+              </div>
+              <div class="page-footer">07</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top right-align">
+                <div class="pair-text">
+                  <p class="poetic-brief">Nuestra unión.</p>
+                  <span class="short-quote">"Tú y yo formamos el mejor equipo del mundo; juntos somos capaces de superar
+                    cualquier obstáculo que se nos presente delante."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/15.jpeg" alt="15"></div>
+              </div>
+              <div class="img-text-pair bottom left-align">
+                <div class="img-wrap small"><img src="/src/photos/16.jpeg" alt="16"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Toda mi luz.</p>
+                  <span class="short-quote">"Iluminas toda mi vida con tu presencia, eres ese rayo de sol que me motiva
+                    a ser mejor persona cada nuevo día."</span>
+                </div>
+              </div>
+              <div class="page-footer">08</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página 5 -->
+        <div class="page" id="page-5">
+          <div class="page-side front">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top">
+                <div class="img-wrap small"><img src="/src/photos/17.jpeg" alt="17"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Mi hogar.</p>
+                  <span class="short-quote">"Tú eres mi casa, mi refugio y el lugar donde siempre quiero volver sin
+                    importar lo lejos que me haya llevado el día."</span>
+                </div>
+              </div>
+              <div class="img-text-pair bottom">
+                <div class="pair-text">
+                  <p class="poetic-brief">Nuestro futuro.</p>
+                  <span class="short-quote">"Vamos por muchos más momentos juntos, por miles de aventuras y por una
+                    historia que nunca deje de escribirse."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/18.jpeg" alt="18"></div>
+              </div>
+              <div class="page-footer">09</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content diagonal-layout">
+              <div class="img-text-pair top right-align">
+                <div class="pair-text">
+                  <p class="poetic-brief">Cada recuerdo.</p>
+                  <span class="short-quote">"Cada segundo que hemos compartido ha sido simplemente mágico, y guardo cada
+                    recuerdo como el tesoro más valioso que tengo."</span>
+                </div>
+                <div class="img-wrap small"><img src="/src/photos/19.jpeg" alt="19"></div>
+              </div>
+              <div class="img-text-pair bottom left-align">
+                <div class="img-wrap small"><img src="/src/photos/20.jpeg" alt="20"></div>
+                <div class="pair-text">
+                  <p class="poetic-brief">Sin final.</p>
+                  <span class="short-quote">"Te amaré siempre, con la misma intensidad y con el compromiso de hacerte la
+                    persona más feliz de este mundo todos los días."</span>
+                </div>
+              </div>
+              <div class="page-footer">10</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página de Video Inmersivo -->
+        <div class="page" id="page-6">
+          <div class="page-side front">
+            <div class="book-page-content video-page">
+              <span class="chapter-label">Tú y Yo Siempre</span>
+              <div class="video-frame">
+                <video controls crossorigin="anonymous">
+                  <source src="/src/photos/video.mp4" type="video/mp4">
+                  Tu navegador no soporta videos.
+                </video>
+              </div>
+              <p class="small-text">Eres el regalo más grande que la vida me ha dado y te elijo a ti hoy y cada mañana
+                por el resto de mis días.</p>
+              <div class="page-footer">♥</div>
+            </div>
+          </div>
+          <div class="page-side back">
+            <div class="book-page-content center-all">
+              <div class="credits">
+                <h4>Te amo infinitamente</h4>
+                <p>Nuestra historia no hace más que empezar.</p>
+                <hr class="separator">
+                <p class="small">Con todo mi amor &copy; 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <nav class="book-nav">
+      <button id="prevBtn" class="nav-btn">Volver</button>
+      <button id="nextBtn" class="nav-btn">Seguir amándote</button>
+    </nav>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

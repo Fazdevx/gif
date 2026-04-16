@@ -1,0 +1,422 @@
+:root {
+  --primary-bg: #ffd0d9;
+  --glass-bg: rgba(255, 250, 250, 0.98); /* Snow White/Pink Blush */
+  --glass-border: rgba(230, 30, 50, 0.15); 
+  --accent-color: #d62828; /* Passionate Red */
+  --text-main: #2b0d0d; 
+  --text-dim: #8d5b5b;
+  --serif-font: 'Cormorant Garamond', serif;
+  --sans-font: 'Montserrat', sans-serif;
+  --transition-speed: 1.2s;
+  --paper-texture: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-main);
+  font-family: var(--sans-font);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background Effects */
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f2869c 100%);
+  z-index: -1;
+}
+
+.background-blur::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+#app {
+  width: 100%;
+  max-width: 1400px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  perspective: 1500px;
+  perspective-origin: center 40%;
+}
+
+/* Header & Footer */
+.main-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-family: var(--serif-font);
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+.logo span {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+  margin-top: 0.5rem;
+}
+
+/* Book Container */
+.book-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.book {
+  position: relative;
+  width: 90vw; 
+  max-width: 400px;
+  height: 600px;
+  transition: transform var(--transition-speed);
+  transform-style: preserve-3d;
+  /* El eje se sitúa en el centro del viewport para un giro equilibrado */
+}
+
+/* Pages Styling */
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-speed) cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s ease;
+  background: transparent;
+  pointer-events: none;
+}
+
+.page.active {
+  pointer-events: all;
+}
+
+.page-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; /* Alineado al contenedor */
+  background: var(--glass-bg);
+  background-image: var(--paper-texture);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 15px 35px rgba(178, 126, 147, 0.313);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2.5rem 1.5rem; /* More padding for order */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.page-side.back {
+  transform: rotateY(180deg);
+  border-radius: 12px;
+}
+
+/* Cover specific */
+.page.cover {
+  left: 0;
+  width: 100%;
+  background: var(--glass-bg);
+  background-image: var(--paper-texture);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transform-origin: left;
+  border-radius: 12px;
+}
+
+.page.cover .page-content {
+  text-align: center;
+}
+
+.page.cover h2 {
+  font-family: var(--serif-font);
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.page.cover h3 {
+  font-weight: 200;
+  letter-spacing: 5px;
+  margin-bottom: 2rem;
+}
+
+.glass-btn {
+  padding: 1rem 2rem;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+.glass-btn:hover {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+}
+
+/* Internal Page Layout */
+.book-page-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color: var(--text-main);
+  position: relative;
+}
+
+/* Diagonal Pair Layout */
+.diagonal-layout {
+  gap: 2.5rem; /* Increased vertical space between pairs */
+  justify-content: flex-start !important;
+}
+
+.img-text-pair {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.img-text-pair.top {
+    align-self: flex-start;
+}
+
+.img-text-pair.bottom {
+    align-self: flex-end;
+}
+
+.img-text-pair.right-align {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.img-text-pair.left-align {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.img-wrap.small {
+  width: 55%;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+}
+
+.img-wrap.small:hover {
+    transform: scale(1.05);
+}
+
+.img-wrap.small img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.15) contrast(1.05) brightness(0.95);
+  transition: filter 0.5s ease;
+}
+
+.img-wrap.small:hover img {
+    filter: sepia(0) contrast(1.1) brightness(1);
+}
+
+.pair-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.poetic-brief {
+  font-family: var(--sans-font);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.short-quote {
+  font-family: var(--serif-font);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--accent-color);
+  font-weight: 500;
+  text-shadow: 0 0 1px rgba(188, 62, 74, 0.1);
+}
+
+@media (max-width: 450px) {
+    .short-quote {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+    .img-text-pair {
+        gap: 0.8rem;
+    }
+}
+
+.right-align .pair-text {
+    text-align: right;
+}
+
+.left-align .pair-text {
+    text-align: left;
+}
+
+.chapter-label {
+  font-family: var(--serif-font);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.7rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: inline-block;
+}
+
+.page-footer {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-align: right;
+  margin-top: auto;
+}
+
+.credits {
+    text-align: center;
+}
+
+.separator {
+  width: 50%;
+  margin: 1rem auto;
+  opacity: 0.3;
+}
+
+/* Video Page Styles */
+.video-page {
+    justify-content: flex-start !important;
+}
+
+.video-frame {
+    width: 100%;
+    aspect-ratio: 9/16; 
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    margin: 1rem 0;
+}
+
+.video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Navigation */
+.book-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--sans-font);
+  font-size: 1rem;
+  font-weight: bold;
+  backdrop-filter: blur(5px);
+}
+
+
+
+.main-footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+/* Flip Animation Logic */
+.page.flipped {
+  transform: rotateY(-180deg);
+  z-index: 1 !important; /* Move to bottom after flip */
+}
+
+/* Ensure the page being flipped has high z-index */
+.page.flipping {
+  z-index: 100 !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 600px) {
+  #app {
+    padding: 1rem;
+  }
+  .logo {
+    font-size: 1.8rem;
+  }
+  .book {
+    height: 70vh;
+  }
+  .pair-text {
+    font-size: 0.8rem;
+  }
+  .img-text-pair {
+    gap: 0.5rem;
+  }
+}
