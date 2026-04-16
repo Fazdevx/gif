@@ -145,6 +145,8 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 2rem 1.2rem; 
+  overflow: hidden;
   border-radius: 12px;
   transition: box-shadow 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -324,7 +326,7 @@ body {
 
 /* Diagonal Pair Layout */
 .diagonal-layout {
-  gap: 2.5rem; /* Increased vertical space between pairs */
+  gap: 1.5rem; /* Reduced for better fit on most screens */
   justify-content: flex-start !important;
 }
 
@@ -354,7 +356,7 @@ body {
 }
 
 .img-wrap.small {
-  width: 55%;
+  width: 48%; /* More balanced */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -571,18 +573,49 @@ body {
 /* Mobile optimizations */
 @media (max-width: 600px) {
   #app {
-    padding: 1rem;
+    padding: 0.5rem;
   }
   .logo {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .book {
-    height: 70vh;
+    height: 75vh;
+    max-height: 550px;
+    width: 95vw;
   }
-  .pair-text {
-    font-size: 0.8rem;
+  .page-side {
+    padding: 1.5rem 1rem;
   }
-  .img-text-pair {
-    gap: 0.5rem;
+  .diagonal-layout {
+    gap: 1rem;
+  }
+  .img-wrap.small {
+    width: 50%;
+  }
+  .short-quote {
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+  .poetic-brief {
+    font-size: 0.6rem;
+  }
+  .page.cover h2 {
+    font-size: 2.5rem;
+  }
+  .video-frame {
+    margin: 0.5rem 0;
+  }
+  .nav-hint {
+    bottom: 1rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-height: 700px) {
+  .book {
+    height: 80vh;
+  }
+  .diagonal-layout {
+    gap: 0.8rem;
   }
 }
