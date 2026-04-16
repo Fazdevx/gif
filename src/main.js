@@ -1,7 +1,7 @@
 import './style.css'
 
-const prevBtn = document.querySelector("#prevBtn");
-const nextBtn = document.querySelector("#nextBtn");
+const prevZone = document.querySelector("#prevZone");
+const nextZone = document.querySelector("#nextZone");
 const book = document.querySelector("#book");
 const pages = document.querySelectorAll(".page");
 const music = document.querySelector("#bg-music");
@@ -23,16 +23,16 @@ function goNextPage() {
         page.classList.add("flipping");
         page.classList.add("flipped");
         
-        // Al avanzar, la página que se va pierde visibilidad gradualmente
-        // para revelar la siguiente "completamente"
+        // Al avanzar, quitamos active de la que se va
+        page.classList.remove("active");
+
         setTimeout(() => {
             page.classList.remove("flipping");
             updateZIndex();
-        }, 1200); 
+        }, 1000); 
 
         currentLoc++;
-        updateButtons();
-        updateZIndex(); // Update immediately for better overlap
+        updateZIndex(); 
     }
 }
 
@@ -40,16 +40,19 @@ function goPrevPage() {
     if(currentLoc > 1) {
         const page = document.querySelector(`#page-${currentLoc - 2}`);
         
+        // Quitamos active de la actual antes de volver
+        const currentPage = document.querySelector(`#page-${currentLoc - 1}`);
+        if(currentPage) currentPage.classList.remove("active");
+
         page.classList.add("flipping");
         page.classList.remove("flipped");
         
         setTimeout(() => {
             page.classList.remove("flipping");
             updateZIndex();
-        }, 1200);
+        }, 1000);
 
         currentLoc--;
-        updateButtons();
         updateZIndex();
     }
 }
@@ -60,27 +63,36 @@ function updateZIndex() {
         if (index < currentLoc - 1) {
             page.style.zIndex = index;
             page.style.pointerEvents = "none";
-            page.style.opacity = "0"; // Ocultar para no distraer en los bordes
+            page.style.opacity = "0"; 
+            if (!page.classList.contains("flipping")) {
+                page.classList.remove("active");
+            }
         } 
         // Página actual (en el centro)
         else if (index === currentLoc - 1) {
             page.style.zIndex = 10;
             page.style.pointerEvents = "all";
             page.style.opacity = "1";
+            // Si no está rotando, activamos sus animaciones
+            if (!page.classList.contains("flipping")) {
+                page.classList.add("active");
+            }
         }
         // Páginas futuras (debajo de la actual)
         else {
             page.style.zIndex = numOfPapers - index;
             page.style.pointerEvents = "none";
             page.style.opacity = "1";
+            page.classList.remove("active");
         }
     });
+
+    // Handle navigation zone visibility
+    prevZone.style.display = currentLoc === 1 ? "none" : "flex";
+    nextZone.style.display = currentLoc === maxLoc ? "none" : "flex";
 }
 
-function updateButtons() {
-    prevBtn.disabled = currentLoc === 1;
-    nextBtn.disabled = currentLoc === maxLoc;
-}
+// Eliminated updateButtons as they are gone
 
 // Touch Support
 let touchstartX = 0;
@@ -97,8 +109,8 @@ document.addEventListener('touchend', e => {
 });
 
 // Event Listeners
-nextBtn.addEventListener("click", () => { goNextPage(); startMusic(); });
-prevBtn.addEventListener("click", () => { goPrevPage(); startMusic(); });
+nextZone.addEventListener("click", () => { goNextPage(); startMusic(); });
+prevZone.addEventListener("click", () => { goPrevPage(); startMusic(); });
 document.querySelector(".glass-btn").addEventListener("click", () => { goNextPage(); startMusic(); });
 
 // Capture any first click to ensure audio starts
@@ -110,4 +122,3 @@ startMusic();
 
 // Initial State
 updateZIndex();
-updateButtons();
