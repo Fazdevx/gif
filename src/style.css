@@ -120,9 +120,16 @@ body {
   left: 0;
   transform-origin: left;
   transform-style: preserve-3d;
-  transition: transform var(--transition-speed) cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   background: transparent;
   pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.page.active, .page.flipping, .page.flipped {
+  visibility: visible;
+  opacity: 1;
 }
 
 .page.active {
@@ -138,7 +145,7 @@ body {
   background-image: var(--paper-texture);
   backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 15px 35px rgba(178, 126, 147, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
@@ -146,8 +153,8 @@ body {
   align-items: center;
   padding: 1.5rem 1.2rem; 
   overflow: hidden;
-  border-radius: 12px;
-  transition: box-shadow 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 4px 12px 12px 4px;
+  transition: all 0.6s ease;
   position: relative;
   z-index: 1;
 }
@@ -640,15 +647,48 @@ body {
   letter-spacing: 1px;
 }
 
-/* Flip Animation Logic */
-.page.flipped {
-  transform: rotateY(-180deg);
-  z-index: 1 !important; /* Move to bottom after flip */
+/* Realistic Page Flip Styles */
+.page.flipping {
+  z-index: 1000 !important;
+  pointer-events: none;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Ensure the page being flipped has high z-index */
-.page.flipping {
-  z-index: 100 !important;
+.page.flipping .page-side.front {
+  box-shadow: 30px 20px 50px rgba(0,0,0,0.2);
+}
+
+.page {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* Page inner shadow during flip */
+.page-side::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.05), transparent 20%, transparent 80%, rgba(0,0,0,0.05));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.page.flipping .page-side::after {
+  opacity: 1;
+}
+
+/* Specific shadow for flipping back */
+.page.flipping-back .page-side.back {
+  box-shadow: -30px 20px 50px rgba(0,0,0,0.2);
 }
 
 /* Mobile optimizations */

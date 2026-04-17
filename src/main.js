@@ -29,7 +29,7 @@ function goNextPage() {
         setTimeout(() => {
             page.classList.remove("flipping");
             updateZIndex();
-        }, 1000); 
+        }, 800); 
 
         currentLoc++;
         updateZIndex(); 
@@ -45,12 +45,14 @@ function goPrevPage() {
         if(currentPage) currentPage.classList.remove("active");
 
         page.classList.add("flipping");
+        page.classList.add("flipping-back");
         page.classList.remove("flipped");
         
         setTimeout(() => {
             page.classList.remove("flipping");
+            page.classList.remove("flipping-back");
             updateZIndex();
-        }, 1000);
+        }, 800);
 
         currentLoc--;
         updateZIndex();
@@ -62,10 +64,10 @@ function updateZIndex() {
         // Páginas ya pasadas (a la izquierda)
         if (index < currentLoc - 1) {
             page.style.zIndex = index;
-            page.style.pointerEvents = "none";
-            page.style.opacity = "0"; 
             if (!page.classList.contains("flipping")) {
+                page.style.opacity = "0"; 
                 page.classList.remove("active");
+                page.style.pointerEvents = "none";
             }
         } 
         // Página actual (en el centro)
@@ -81,9 +83,11 @@ function updateZIndex() {
         // Páginas futuras (debajo de la actual)
         else {
             page.style.zIndex = numOfPapers - index;
-            page.style.pointerEvents = "none";
-            page.style.opacity = "1";
-            page.classList.remove("active");
+            if (!page.classList.contains("flipping")) {
+                page.style.opacity = "1";
+                page.style.pointerEvents = "none";
+                page.classList.remove("active");
+            }
         }
     });
 
