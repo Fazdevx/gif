@@ -3,14 +3,15 @@
   --glass-bg: rgba(255, 255, 255, 0.98); 
   --glass-border: rgba(255, 121, 145, 0.3); 
   --accent-color: #ff4d6d; 
-  --book-cover: #ffb3c1; /* Hello Kitty Soft Pink */
-  --gold: #ffffff; /* White for Hello Kitty look */
+  --book-cover: #ffb3c1; 
+  --gold: #ffffff; 
   --text-main: #5c4033; 
   --text-dim: #9b6b72;
   --serif-font: 'Outfit', sans-serif;
   --sans-font: 'Montserrat', sans-serif;
   --transition-speed: 1s;
   --paper-texture: url("https://www.transparenttextures.com/patterns/white-diamond.png");
+  --kitty-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23ffb3c1' fill-opacity='0.08'%3E%3Cpath d='M30 45 c0-10 10-15 20-15 s20 5 20 15 c0 8-5 12-10 15 c-5 3-15 3-20 0 c-5-3-10-7-10-15 Z'/%3E%3Ccircle cx='35' cy='40' r='3'/%3E%3Ccircle cx='65' cy='40' r='3'/%3E%3Cpath d='M45 45 q5 5 10 0' fill='none' stroke='%23ffb3c1' stroke-width='1'/%3E%3Cpath d='M70 30 l10-5 l5 10 Z'/%3E%3C/g%3E%3C/svg%3E");
   --glow-color: rgba(255, 143, 163, 0.4);
 }
 
@@ -105,10 +106,9 @@ body {
   position: relative;
   width: 90vw; 
   max-width: 400px;
-  height: 600px;
+  height: 480px; /* Reduced height for compactness */
   transition: transform var(--transition-speed);
   transform-style: preserve-3d;
-  /* El eje se sitúa en el centro del viewport para un giro equilibrado */
 }
 
 /* Pages Styling */
@@ -133,23 +133,45 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  left: 0; /* Alineado al contenedor */
+  left: 0; 
   background: var(--glass-bg);
-  background-image: var(--paper-texture), 
-                    radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+  background-image: var(--paper-texture);
   backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 15px 35px rgba(178, 126, 147, 0.313);
+  box-shadow: 0 15px 35px rgba(178, 126, 147, 0.2);
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center; 
   align-items: center;
-  padding: 2rem 1.2rem; 
+  padding: 1.5rem 1.2rem; 
   overflow: hidden;
   border-radius: 12px;
   transition: box-shadow 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
 }
+
+/* Subtle Watermark Backgrounds */
+.page-side::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: -1;
+  background-blend-mode: screen;
+}
+
+.bg-kitty::before { background: linear-gradient(rgba(255, 179, 193, 0.92), rgba(255, 179, 193, 0.92)), url('/src/assets/kitty.png'); background-size: cover; }
+.bg-heart::before { background: linear-gradient(rgba(255, 179, 193, 0.92), rgba(255, 179, 193, 0.92)), url('/src/assets/kitty_heart.png'); background-size: cover; }
+.bg-flowers::before { background: linear-gradient(rgba(255, 179, 193, 0.92), rgba(255, 179, 193, 0.92)), url('/src/assets/kitty_flowers.png'); background-size: cover; }
+.bg-wink::before { background: linear-gradient(rgba(255, 179, 193, 0.92), rgba(255, 179, 193, 0.92)), url('/src/assets/kitty_wink.png'); background-size: cover; }
+.bg-bow::before { background: linear-gradient(rgba(255, 179, 193, 0.92), rgba(255, 179, 193, 0.92)), url('/src/assets/kitty.png'); background-size: cover; }
 
 .page.active:hover .page-side.front {
   box-shadow: 0 25px 50px rgba(178, 126, 147, 0.4);
@@ -205,8 +227,10 @@ body {
 .page.cover {
   left: 0;
   width: 100%;
-  background: var(--book-cover);
-  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4) 0%, transparent 40%);
+  background: linear-gradient(rgba(255, 179, 193, 0.9), rgba(255, 179, 193, 0.9)), url('/src/assets/kittydoctor1.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen; 
   border: 5px solid white;
   border-radius: 12px; 
   display: flex;
@@ -254,9 +278,9 @@ body {
 .page.cover h2 {
   font-family: var(--serif-font);
   font-size: 3.5rem;
-  color: white;
+  color: rgb(252, 90, 136);
   margin-bottom: 0.5rem;
-  text-shadow: 3px 3px 0px var(--accent-color), 6px 6px 15px rgba(255, 77, 109, 0.4);
+  text-shadow: 3px 3px 0px white, 6px 6px 15px rgba(255, 77, 109, 0.4);
   animation: revealContent 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
   opacity: 0;
   letter-spacing: 2px;
@@ -267,7 +291,7 @@ body {
   font-weight: 800;
   letter-spacing: 6px;
   margin-bottom: 2rem;
-  color: var(--accent-color);
+  color: rgb(0, 0, 0);
   text-transform: uppercase;
   font-size: 1rem;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
@@ -276,7 +300,7 @@ body {
 }
 
 .page.cover p {
-  color: var(--text-main);
+  color: rgb(0, 0, 0);
   font-family: var(--serif-font);
   font-style: italic;
   font-size: 1.1rem;
@@ -330,10 +354,10 @@ body {
 
 /* Diagonal Pair Layout */
 .diagonal-layout {
-  gap: 2rem;
-  justify-content: space-around !important;
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
+  gap: 1rem;
+  justify-content: center !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .img-text-pair {
@@ -406,7 +430,7 @@ body {
   font-size: 0.8rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: black;
   margin: 0;
   font-weight: 400;
 }
@@ -416,7 +440,7 @@ body {
   font-size: 1.25rem; /* Increased size */
   font-style: italic;
   line-height: 1.5;
-  color: var(--accent-color);
+  color: black;
   font-weight: 500;
   text-shadow: 0 0 1px rgba(188, 62, 74, 0.1);
 }
@@ -441,15 +465,16 @@ body {
 }
 
 .page-footer {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   letter-spacing: 3px;
   color: var(--text-dim);
   text-align: right;
-  margin-top: auto;
+  margin-top: 0.5rem;
   color: var(--text-main);
-  opacity: 0.5;
+  opacity: 0.4;
   border-top: 1px solid rgba(0,0,0,0.05);
-  padding-top: 0.5rem;
+  padding-top: 0.3rem;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -473,7 +498,7 @@ body {
 .page-decoration {
   width: 150px;
   height: 120px;
-  margin: 1.5rem auto 0.5rem;
+  margin:  auto ;
   opacity: 0;
   transform: translateY(20px);
   filter: drop-shadow(0 10px 20px rgba(214, 40, 40, 0.1));
@@ -635,8 +660,8 @@ body {
     font-size: 1.5rem;
   }
   .book {
-    height: 75vh;
-    max-height: 550px;
+    height: 65vh;
+    max-height: 480px;
     width: 95vw;
   }
   .page-side {
@@ -699,7 +724,7 @@ body {
   line-height: 1.8;
   color: var(--text-main);
   text-align: justify;
-  max-height: 70%;
+  max-height: 100%;
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin;
